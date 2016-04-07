@@ -1,0 +1,38 @@
+div {
+	text-align: center;
+	padding: 10px;
+}
+
+#div1 {
+	/*background-color: #8888FF;*/
+	margin-top: 50px;
+	/*height: 800px;
+	width: 100%;*/
+}
+
+.inside {
+	background-color: #FFFFFF;
+	width: 350px;
+	height: 550px;
+	float: left;
+	margin: 5px;
+}
+
+#div2 {
+	text-align: left;
+	width: 250px;
+}
+
+#div3 {
+	text-align: left;
+	width: 250px;
+}
+
+form {
+	text-align: left;
+	padding: 10px;
+}
+
+input {
+	margin-bottom: 5px;
+}

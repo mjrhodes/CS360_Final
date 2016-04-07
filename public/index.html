@@ -1,0 +1,165 @@
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="javascripts/login.js"></script>
+    <title> Sign-In </title>
+</head>
+<body ng-app="login" ng-controller="LoginCtrl">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">JobShift.com</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home Page<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Announcements</a></li>
+        <li><a href="#">Calendar</a></li>
+      </ul>
+      <button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
+<!--        <button type="button" class="btn btn-default navbar-btn navbar-right">Register</button>-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </nav>
+  
+    <div class="col-sm-6">
+    <form ng-submit="signInEmployee()" >
+	  <div class="form-group row">
+        <label class="col-sm-offset-4 col-sm-6 form-control-label">Employee Sign-In</label>
+      </div>
+      <div class="form-group row">
+        <label for="inputUserName1" class="col-sm-offset-4 col-sm-2 form-control-label">User Name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="inputUserName1" placeholder="User Name" ng-model="employeeSIUNCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword1" class="col-sm-offset-4 col-sm-2 form-control-label">Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputPassword1" placeholder="Password" ng-model="employeeSIPWCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-6 col-sm-8">
+          <button id="EmployeeSignIn" type="submit" class="btn btn-secondary">Sign in</button>
+        </div>
+      </div>
+    </form>
+   </div>
+   
+   <div class="col-sm-6">
+    <form ng-submit="signInEmployer()">
+	  <div class="form-group row">
+        <label class="col-sm-6 form-control-label">Employer Sign-In</label>
+      </div>
+      <div class="form-group row">
+        <label for="inputUserName2" class="col-sm-2 form-control-label">User Name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="inputUserName2" placeholder="User Name" ng-model="employerSIUNCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword2" class="col-sm-2 form-control-label">Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputPassword2" placeholder="Password" ng-model="employerSIPWCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-8">
+          <button type="submit" class="btn btn-secondary">Sign in</button>
+        </div>
+      </div>
+    </form>
+   </div>
+   
+   <div class="col-sm-6">
+    <form ng-submit="registerEmployee()">
+	  <div class="form-group row">
+        <label class="col-sm-offset-4 col-sm-6 form-control-label">Register as Employee</label>
+      </div>
+      <div class="form-group row">
+        <label for="inputID1" class="col-sm-offset-4 col-sm-2 form-control-label">Employer ID</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="inputID3" placeholder="Employer ID" ng-model="employeeREIDCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputUserName3" class="col-sm-offset-4 col-sm-2 form-control-label">User Name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="inputUserName3" placeholder="User Name" ng-model="employeeRUNCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-offset-4 col-sm-2 form-control-label">Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="employeeRPWCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputCPassword1" class="col-sm-offset-4 col-sm-2 form-control-label">Confirm Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputCPassword1" placeholder="Password" ng-model="employeeRCPWCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-6 col-sm-8">
+          <button type="submit" class="btn btn-secondary">Register</button>
+        </div>
+      </div>
+    </form>
+   </div>
+   
+   <div class="col-sm-6">
+    <form ng-submit="registerEmployer()">
+	  <div class="form-group row">
+        <label "col-sm-6 form-control-label">Register as Employer</label>
+      </div>
+      <div class="form-group row">
+        <label for="inputUserName4" class="col-sm-2 form-control-label">User Name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="inputUserName4" placeholder="User Name" ng-model="employerRUNCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword4" class="col-sm-2 form-control-label">Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" ng-model="employerRPWCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputCPassword2" class="col-sm-2 form-control-label">Confirm Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="inputCPassword2" placeholder="Password" ng-model="employerRCPWCon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-8">
+          <button type="submit" class="btn btn-secondary">Register</button>
+        </div>
+      </div>
+    </form>
+   </div>
+    
+    
+    
+  </body>
+</html>
+

@@ -1,0 +1,45 @@
+<div class='row' style='padding: 4%; padding-top:1%;' ng-app='app'>
+    <div class="col-md-12">
+        <h2>Shift Management</h2>
+    </div>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label>Shift Name</label>
+                <input type="text" class="form-control" ng-model="title" placeholder="Shift Name">
+            </div>
+            <div class='col-sm-6'>
+                <strong>Start Time</strong>
+                <uib-timepicker ng-model="startTime" ng-change="changed()" hour-step="1" minute-step="1" ></uib-timepicker>
+            </div>
+            <div class='col-sm-6'>
+                <strong>End Time</strong>
+                <uib-timepicker ng-model="endTime" ng-change="changed()" hour-step="1" minute-step="1" ></uib-timepicker>
+            </div>
+            <div class="form-group">
+                <label>Number of Employees For Shift</label>
+                <input type="number" class="form-control" step="1" value="0">
+            </div>
+        </form>
+        <!--        <span ng-repeat='item in items'>{{item}}<br></span><br>-->
+<!--
+        {{newEvent.title}}<br>
+        Date: {{newEvent.start}}<br>
+-->
+    </div>
+    <div class="col-md-6">
+        <h4><strong>Employees Available to Work</strong></h4>
+        <ul>
+            <li>List</li>
+            <li>of</li>
+            <li>Employees</li>
+            <li>Will</li>
+            <li>Go</li>
+            <li>Here</li>
+        </ul>
+    </div>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-success pull-right" ng-click="save($('#title').value)">Save</button>
+        <button type="button" class="btn btn-primary pull-right" style="margin-right:5px" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/stylesheet.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+	<script src="javascripts/login.js"></script>
+	<title> Sign-In </title>
+</head>
+<body ng-app="login" ng-controller="LoginCtrl">
+	<div id="div1">
+		<div class="inside"></div>
+		<div id = "div2" class="inside">
+			<h3>Employee Sign-in</h3>
+			<form ng-submit="signInEmployee()" style = "margin-top30px;">
+				User Name:
+				<input type="text" ng-model="employeeSIUNCon"></input><br>
+				Password:
+				<input type="password" ng-model="employeeSIPWCon"></input><br>
+				<button type="submit">Sign-In</button>
+		  	</form>
+			<br>
+			<h3>Register</h3>
+			<form ng-submit="registerEmployee()" style = "margin-top30px;">
+				Employer ID:
+				<input type="text" ng-model="employeeREIDCon"></input><br>
+				User Name:
+				<input type="text" ng-model="employeeRUNCon"></input><br>
+				Password:
+				<input type="password" ng-model="employeeRPWCon"></input><br>
+				Confirm Password:
+				<input type="password" ng-model="employeeRCPWCon"></input><br>
+				<button type="submit">Submit</button>
+		  	</form>
+		</div>
+		<div id = "div3" class="inside">
+			<h3>Employer Sign-in</h3>
+			<form ng-submit="signInEmployer()" style = "margin-top30px;">
+				User Name:
+				<input type="text" ng-model="employerSIUNCon"></input><br>
+				Password:
+				<input type="password" ng-model="employerSIPWCon"></input><br>
+				<button type="submit">Sign-In</button>
+		  	</form>
+			<br>
+			<h3>Register</h3>
+			<form ng-submit="registerEmployer()" style = "margin-top30px;">
+				User Name:
+				<input type="text" ng-model="employerRUNCon"></input><br>
+				Password:
+				<input type="password" ng-model="employerRPWCon"></input><br>
+				Confirm Password:
+				<input type="password" ng-model="employerRCPWCon"></input><br>
+				<button type="submit">Submit</button>
+		  	</form>
+		</div>
+		<div class="inside"></div>
+	</div>
+</body>

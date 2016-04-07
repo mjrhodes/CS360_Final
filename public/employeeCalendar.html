@@ -1,0 +1,109 @@
+<html ng-app="app">
+<head>
+    <!-- Full Calendar -->
+    <link rel='stylesheet' href='fullcalendar-2.6.1/fullcalendar.css' />
+    <script src='fullcalendar-2.6.1/lib/jquery.min.js'></script>
+    <script src='fullcalendar-2.6.1/lib/moment.min.js'></script>
+    <script src='fullcalendar-2.6.1/fullcalendar.js'></script>
+    <!-- Angular and Bootstrap -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.5.js"></script>
+    <script src="javascripts/angularApp.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<employee></employee> <!-- includes employer navbar -->
+    <div class="col-sm-offset-1 col-sm-10">
+        <h2>Work Schedule</h2>
+        <br>
+    </div>
+    
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    
+    <div id='scopeTest' ng-controller="ModalDemoCtrl"></div>
+    
+    <div class='col-sm-offset-1 col-sm-10' id='java-calendar'></div>
+    <div class="clearfix"></div>
+    <script>
+        $(document).ready(function() {
+            $('#java-calendar').fullCalendar({
+                
+                customButtons: {
+                    weekendButton: {
+                        text: 'weekends',
+                        click: function() {
+                        }
+                    }
+                },
+                
+                header: {
+                    left: 'title',
+                    center: '',
+                    right: 'today month,agendaWeek,agendaDay prev,next',
+                },
+                
+                defaultView: 'agendaWeek',
+                height: 700,
+                weekends: true, // will hide Saturdays and Sundays
+                
+                businessHours: {
+                    start: '8:00' // a start time (10am in this example)
+                },
+                
+                dayClick: function(date, jsEvent, view) {
+                    var scope = angular.element(document.getElementById('scopeTest')).scope();
+                    scope.$apply(function () {scope.open('lg', date, jsEvent, view, $('#java-calendar'), false); });
+                },
+                
+                eventClick: function(calEvent, jsEvent, view) {
+//                    console.log(calEvent.start._d);
+//                    var dates = {start:calEvent.start._d, end:calEvent.end._d};
+                    var scope = angular.element(document.getElementById('scopeTest')).scope();
+                    scope.$apply(function () {scope.edit('lg', calEvent, jsEvent, view, $('#java-calendar'), true); });
+                },
+                
+                editable: true,
+                draggable: true,
+                
+                buttonIcons: {
+                    prev: 'left-single-arrow',
+                    next: 'right-single-arrow'
+                },
+                
+                timezone: 'America/Denver',
+                
+                events: [
+                    {
+                        title  : 'event1',
+                        start  : '2016-03-26T12:30:00',
+                        end    : '2016-03-26T13:00:00'
+                    }
+                ]
+                
+            });
+            
+        });
+    </script>
+</body>
+</html>
