@@ -8,7 +8,9 @@ function hashPW(pwd){
 exports.signup = function(req, res){
   console.log("Begin exports.signup");
   console.log("req: " + req.body);
-  var employee = new Employee({employerID: req.body.employerID, username:req.body.username});
+  console.log("req: " + req.body.username);
+  console.log("req: " + req.body.employerID);
+  var employee = new Employee({username:req.body.username, employerID: req.body.employerID});
   console.log("after new employer exports.signup");
   employee.set('hashed_password', hashPW(req.body.password));
   console.log("after hashing employer exports.signup");

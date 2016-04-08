@@ -110,6 +110,7 @@ app.controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
     
     $scope.open = function (size, date, jsEvent, view, calendar, edit) {
 //        alert("In function");
+//        console.log(date);
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: '../test.html',
@@ -145,9 +146,11 @@ app.controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
         });
     };
     
-    $scope.addEvent = function() {
-        
-    }
+//    $scope.getEvents = function() {
+//      return $http.get('/events').success(function(data){
+//        angular.copy(data, $scope.events);
+//      });
+//    }
 
 }
 );
@@ -156,7 +159,13 @@ app.controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
 //// It is not the same as the $uibModal service used above.
 //
 app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, items, date, calendar, edit) {
-    if(edit) {
+    console.log(date);
+    if(edit && date.className != "new") {
+        $scope.startTime = new Date(moment(date.start._d).add(6, 'h'));
+        $scope.endTime = new Date(moment(date.end._d).add(6, 'h'));
+        $scope.newEvent = {title:'new event',start:date};
+        $scope.title = date.title;
+    } else if(edit) {
         $scope.startTime = new Date(moment(date.start._d));
         $scope.endTime = new Date(moment(date.end._d));
         $scope.newEvent = {title:'new event',start:date};
@@ -168,28 +177,43 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, 
     }
   
   $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
+//  $scope.selected = {
+//    item: $scope.items[0]
+//  };
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
     
     $scope.save = function() {
-        var start = $scope.startTime;
-        var end = $scope.endTime;
+        console.log(date);
+        var start = moment($scope.startTime).add(-6, 'h');
+        var end = moment($scope.endTime).add(-6, 'h');
         var newEvent = {title:$scope.title, start:start, end:end};
         if(edit) {
             date.start._d = $scope.startTime;
             date.end._d = $scope.endTime;
             date.title = $scope.title;
-            calendar.fullCalendar('updateEvent', date);
+            return $http.put('/events/' + date.id + '/update')
+                .success(function(data){
+                    console.log("update worked");
+                    calendar.fullCalendar('updateEvent', date);
+                    $uibModalInstance.dismiss('cancel');
+            });
+//            calendar.fullCalendar('updateEvent', date);
         } else {
-//            return $http.post('/events', newEvent).success(function(data){
-                calendar.fullCalendar( 'renderEvent', newEvent, true );
-//                $uibModalInstance.dismiss('cancel');
-//            )};
+            return $http.post('/events', newEvent).success(function(data){
+                console.log(data);
+                var calEvent = {
+                    id:data._id,
+                    title:$scope.title,
+                    start:$scope.startTime,
+                    end:$scope.endTime,
+                    className:"new"
+                };
+                calendar.fullCalendar( 'renderEvent', calEvent, true );
+                $uibModalInstance.dismiss('cancel');
+            });
         }
         $uibModalInstance.dismiss('cancel');
     };

@@ -12,30 +12,9 @@
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.1.js"></script>
     <script src="javascripts/angularApp.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    
-        <!-- New Calendar -->
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-         <script src="codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
-     <link rel="stylesheet" href="codebase/dhtmlxscheduler.css" type="text/css" media="screen" title="no title" charset="utf-8">
-     <style type="text/css" media="screen">
-         html, body{
-             margin:0px;
-             padding:0px;
-             height:100%;
-             overflow:hidden;
-         }   
-     </style>
-    
-    
 </head>
     
-<script type="text/javascript" charset="utf-8">
-     function init() {
-         scheduler.init('scheduler_here',new Date(2013,8,4),"month");
-     }
-</script>
-    
-<body onload='init();'>
+<body>
 <employer></employer> <!-- includes employer navbar -->
     <div class="col-sm-offset-1 col-sm-10">
         <h2>Shift Manager</h2>
@@ -45,24 +24,8 @@
     <span ng-repeat='event in events'>{{event}}<br></span><br>
     <div id='scopeTest' ng-controller="ModalDemoCtrl"></div>
     
-<!--    <div class='col-sm-offset-1 col-sm-10' id='java-calendar'></div>-->
-<!--    <div class="clearfix"></div>-->
-    
-     <div id="scheduler_here" class="dhx_cal_container col-sm-offset-1 col-sm-10">
-         <div class="dhx_cal_navline">
-             <div class="dhx_cal_prev_button">&nbsp;</div>
-             <div class="dhx_cal_next_button">&nbsp;</div>
-             <div class="dhx_cal_today_button"></div>
-             <div class="dhx_cal_date"></div>
-             <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
-             <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
-             <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
-         </div>
-         <div class="dhx_cal_header">
-         </div>
-         <div class="dhx_cal_data">
-         </div>
-     </div>
+    <div class='col-sm-offset-1 col-sm-10' id='java-calendar'></div>
+    <div class="clearfix"></div>
     
     
     <script>
@@ -92,8 +55,9 @@
                 },
                 
                 dayClick: function(date, jsEvent, view) {
+//                    console.log(date);
                     var scope = angular.element(document.getElementById('scopeTest')).scope();
-                    scope.$apply(function () {scope.open('lg', date, jsEvent, view, $('#java-calendar'), false); });
+                    scope.$apply(function () {scope.open('lg', date._d, jsEvent, view, $('#java-calendar'), false); });
                 },
                 
                 eventClick: function(calEvent, jsEvent, view) {
@@ -113,16 +77,23 @@
                 
                 timezone: 'America/Denver',
                 
-                events: [
-                    {
-                        title  : 'event1',
-                        start  : '2016-03-26T12:30:00',
-                        end    : '2016-03-26T13:00:00'
-                    }
-                ]
-                
-            });
-            
+                events: function(start, end, timezone, callback) {
+                            $.getJSON('events', function(data) {
+//                                console.log(data);
+                                var allEvents = [];
+                                for (var i = 0; i < data.length; i++) {
+//                                    console.log(data[i]);
+                                    allEvents.push({
+                                        id: data[i]._id,
+                                        title: data[i].title,
+                                        start: data[i].startDate,
+                                        end: data[i].endDate
+                                    });
+                                }
+                                callback(allEvents);
+                            });
+                        }
+                });
         });
     </script>
 </body>

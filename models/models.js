@@ -3,12 +3,16 @@ var EventSchema = new mongoose.Schema({
     title: String,
     startDate: Date,
     endDate: Date,
-    numOfEmployees: Number
+//    numOfEmployees: Number
 });
-EventSchema.methods.save = function(cb) {
-    this.save(function(err) {
-        if(err) throw err;
-    });
+//EventSchema.methods.save = function(cb) {
+//    this.save(function(err) {
+//        if(err) throw err;
+//    });
+//};
+EventSchema.methods.update = function(cb) {
+    console.log(cb);
+  this.save(cb);
 };
 var EmployeeSchema = new mongoose.Schema({
     username: { type: String, unique: true },

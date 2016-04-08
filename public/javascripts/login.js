@@ -3,12 +3,13 @@ angular.module('login', [])
   '$scope', '$http',
   function($scope, $http) {
     
-    
+    var prefix = window.location; 
 
     $scope.signInEmployee = function() {
       console.log("Sign In Employee clicked");
       console.log("\tUN: " + $scope.employeeSIUNCon);
       console.log("\tPW: " + $scope.employeeSIPWCon); 
+      window.location = prefix + 'employeeView';
       $scope.clearSignInEmployee();
     };
      
@@ -16,7 +17,7 @@ angular.module('login', [])
       console.log("Sign In Employer clicked");
       console.log("\tUN: " + $scope.employerSIUNCon);
       console.log("\tPW: " + $scope.employerSIPWCon);
-      $http.get('/employerView');
+      window.location = prefix + 'employerView';
       $scope.clearSignInEmployer();      
     };
 
@@ -33,9 +34,8 @@ angular.module('login', [])
           password: $scope.employeeRPWCon
         };
         console.log(data);
-        return $http.post("/register/employee", data).success(function(data, status) {
-            console.log('posted');
-        });
+        $http.post('/register/employee', data);
+        window.location = prefix + 'employeeView';
         $scope.clearRegisterEmployee();
       } else {
         $scope.employeeRPWCon = '';
@@ -50,7 +50,7 @@ angular.module('login', [])
         //console.log("\tUN: " + $scope.employerRUNCon);
         //console.log("\tPW: " + $scope.employerRPWCon);
         //console.log("\tCPW: " + $scope.employerRCPWCon);
-        $http.get('/employerView');
+        window.location = prefix + 'employerView';
         $scope.clearRegisterEmployer();
       } else {
         $scope.employerRPWCon = '';

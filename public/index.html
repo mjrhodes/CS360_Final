@@ -39,9 +39,9 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
   </nav>
-  
+
     <div class="col-sm-6">
-    <form ng-submit="signInEmployee()" >
+    <form ng-submit="signInEmployee()">
 	  <div class="form-group row">
         <label class="col-sm-offset-4 col-sm-6 form-control-label">Employee Sign-In</label>
       </div>
@@ -91,26 +91,26 @@
    </div>
    
    <div class="col-sm-6">
-    <form ng-submit="registerEmployee()">
+    <form ng-submit="registerEmployee()" method="POST">
 	  <div class="form-group row">
         <label class="col-sm-offset-4 col-sm-6 form-control-label">Register as Employee</label>
       </div>
       <div class="form-group row">
         <label for="inputID1" class="col-sm-offset-4 col-sm-2 form-control-label">Employer ID</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="inputID3" placeholder="Employer ID" ng-model="employeeREIDCon">
+          <input type="text" class="form-control" id="inputID3" placeholder="Employer ID" ng-model="employeeREIDCon" name="employerID">
         </div>
       </div>
       <div class="form-group row">
         <label for="inputUserName3" class="col-sm-offset-4 col-sm-2 form-control-label">User Name</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="inputUserName3" placeholder="User Name" ng-model="employeeRUNCon">
+          <input type="text" class="form-control" id="inputUserName3" placeholder="User Name" ng-model="employeeRUNCon" name="username">
         </div>
       </div>
       <div class="form-group row">
         <label for="inputPassword3" class="col-sm-offset-4 col-sm-2 form-control-label">Password</label>
         <div class="col-sm-4">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="employeeRPWCon">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="employeeRPWCon" name="password">
         </div>
       </div>
       <div class="form-group row">
